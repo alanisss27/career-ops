@@ -2478,7 +2478,7 @@ const SCAN_RUNS_PATH = path.join(DATA_ROOT, 'data/scan-runs.tsv');
 // writeRunFailureRow (#2643) so trend stats can exclude survivorship bias.
 // Consumers MUST parse by header name, never by position — columns may be
 // appended in later versions.
-export const SCAN_RUNS_HEADER = 'timestamp\tstatus\tcompanies\tboards\tfound\tfiltered_title\tfiltered_tier\tfiltered_location\tfiltered_posting_age\tfiltered_salary\tfiltered_content\tfiltered_cooldown\tdupes\tnew_added\terrors\tfiltered_blacklist\tfiltered_visa\tfiltered_posted_date\tfiltered_country_eligibility\n';
+export const SCAN_RUNS_HEADER = 'timestamp\tstatus\tcompanies\tboards\tfound\tfiltered_title\tfiltered_tier\tfiltered_location\tfiltered_posting_age\tfiltered_salary\tfiltered_content\tfiltered_cooldown\tdupes\tnew_added\terrors\tfiltered_blacklist\tfiltered_visa\tfiltered_posted_date\tfiltered_country_eligibility\trun_type\tquery_count\tqueries_completed\traw_clues\tstarted_at\tcompleted_at\tinterruption_reason\n';
 
 // Failure-path writes (#2643). main() registers a snapshot closure once the
 // sweep's counters exist (never on --dry-run, never before the sweep starts —
@@ -2505,6 +2505,8 @@ export function writeRunFailureRow(status = 'failed', filePath = SCAN_RUNS_PATH)
 }
 
 export function appendScanRunSummary(c, filePath = SCAN_RUNS_PATH) {
+  // Compatible legacy headers are widened with empty trailing cells before appending,
+  // preserving historical counters while allowing discovery metadata to be added.
   // The header is written only on first creation, so a release that appends or inserts a counter
   // leaves existing files with a header that no longer describes the rows below it. Nothing
   // migrates it and nothing notices: stats.mjs reads by column NAME, so it silently returns a
@@ -2514,7 +2516,18 @@ export function appendScanRunSummary(c, filePath = SCAN_RUNS_PATH) {
     atomicWriteFile(filePath, SCAN_RUNS_HEADER);
   } else {
     const onDisk = (readFileSync(filePath, 'utf-8').split('\n', 1)[0] || '') + '\n';
-    if (onDisk !== SCAN_RUNS_HEADER) {
+    const oldFields = onDisk.trim().split('\t');
+    const newFields = SCAN_RUNS_HEADER.trim().split('\t');
+    const compatibleLegacy = oldFields.every((name, i) => name === newFields[i]) && oldFields.length < newFields.length;
+    if (compatibleLegacy) {
+      const migrated = readFileSync(filePath, 'utf-8').split(/\r?\n/).filter(Boolean).map((line, i) => {
+        if (i === 0) return SCAN_RUNS_HEADER.trim();
+        const cells = line.split('\t');
+        while (cells.length < newFields.length) cells.push('');
+        return cells.slice(0, newFields.length).join('\t');
+      }).join('\n') + '\n';
+      atomicWriteFile(filePath, migrated);
+    } else if (onDisk !== SCAN_RUNS_HEADER) {
       console.error(
         `Warning: ${filePath} header has ${onDisk.trim().split('\t').length} columns but this build writes `
         + `${SCAN_RUNS_HEADER.trim().split('\t').length}. Rows below the header are positionally offset and `
@@ -2536,8 +2549,31 @@ export function appendScanRunSummary(c, filePath = SCAN_RUNS_PATH) {
     c.filteredPostedDate ?? 0,
     // filtered_country_eligibility (#2093) appended at the END for the same reason.
     c.filteredCountryEligibility ?? 0,
+    c.runType ?? 'scanner',
+    c.queryCount ?? '',
+    c.queriesCompleted ?? '',
+    c.rawClues ?? '',
+    c.startedAt ?? '',
+    c.completedAt ?? (c.status === 'completed' ? c.timestamp ?? '' : ''),
+    c.interruptionReason ?? '',
   ].join('\t') + '\n';
   appendFileSync(filePath, row, 'utf-8');
+}
+
+/** Persist a WebSearch/agent discovery run using the same durable run ledger. */
+export function appendDiscoveryRunSummary({
+  timestamp = new Date().toISOString(), status = 'completed', queryCount = 0,
+  queriesCompleted = 0, rawClues = 0, newAdded = 0, dupes = 0, errors = 0,
+  startedAt = '', completedAt = timestamp, interruptionReason = '', filePath = SCAN_RUNS_PATH,
+} = {}) {
+  appendScanRunSummary({
+    timestamp, status, companies: 0, boards: queryCount, found: rawClues,
+    filteredTitle: 0, filteredTier: 0, filteredLocation: 0, filteredPostingAge: 0,
+    filteredSalary: 0, filteredContent: 0, filteredCooldown: 0, dupes, newAdded, errors,
+    filteredBlacklist: 0, filteredVisa: 0, filteredPostedDate: 0, filteredCountryEligibility: 0,
+    runType: 'websearch', queryCount, queriesCompleted, rawClues, startedAt, completedAt,
+    interruptionReason, filePath,
+  }, filePath);
 }
 
 // ── Portal health persistence (#1744) ───────────────────────────────

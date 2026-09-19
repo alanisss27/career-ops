@@ -27,13 +27,15 @@ import { fileURLToPath } from 'url';
 import { normalizeReportLink } from './tracker-links.mjs';
 import { getCareerOpsRoot } from './path-resolver.mjs';
 import { flagValue, validateFlags } from './lib/cli-flags.mjs';
+import { resolveTrackerPath } from './tracker-utils.mjs';
+import { parseReportLifecycle, parseTrackerLifecycle, resolvePipelineLifecycle } from './pipeline-lifecycle.mjs';
 
 const CAREER_OPS = getCareerOpsRoot();
 
-const KNOWN_FLAGS = ['--dry-run', '--pipeline', '--state', '--help', '-h'];
+const KNOWN_FLAGS = ['--dry-run', '--lifecycle', '--pipeline', '--state', '--help', '-h'];
 const VALUE_FLAGS = ['--pipeline', '--state'];
-const USAGE = `Usage: node reconcile-pipeline.mjs [--dry-run] [--state <path>] [--pipeline <path>]
-  Moves batch-processed offers out of pipeline.md "Pendientes" into "Procesadas".`;
+const USAGE = `Usage: node reconcile-pipeline.mjs [--dry-run] [--lifecycle] [--state <path>] [--pipeline <path>]
+  Moves batch-processed or terminal-lifecycle offers out of pipeline.md "Pendientes" into "Procesadas".`;
 
 // An unrecognized flag (typo'd --dry-run, say) used to be silently ignored
 // and fall through to a LIVE run that writes pipeline.md — the caller
@@ -42,6 +44,7 @@ const args = process.argv.slice(2);
 validateFlags(args, KNOWN_FLAGS, USAGE, { valueFlags: VALUE_FLAGS, requireOperand: true });
 
 const DRY_RUN = args.includes('--dry-run');
+const LIFECYCLE = args.includes('--lifecycle');
 
 // Constrain user-supplied --state/--pipeline paths to the repository tree, so a
 // crafted path cannot read from or overwrite files outside the project.
@@ -79,9 +82,10 @@ const defaultPipeline = existsSync(join(CAREER_OPS, 'data/pipeline.md'))
 const PIPELINE_FILE = resolveInsideRepo(flagValue(args, '--pipeline'), defaultPipeline, '--pipeline');
 const STATE_FILE = resolveInsideRepo(flagValue(args, '--state'), join(CAREER_OPS, 'batch/batch-state.tsv'), '--state');
 const REPORTS_DIR = join(CAREER_OPS, 'reports');
+const TRACKER_FILE = resolveTrackerPath(CAREER_OPS);
 
 // ---- guards ----
-if (!existsSync(STATE_FILE)) {
+if (!LIFECYCLE && !existsSync(STATE_FILE)) {
   console.log('No batch-state.tsv found — nothing to reconcile.');
   process.exit(0);
 }
@@ -92,8 +96,8 @@ if (!existsSync(PIPELINE_FILE)) {
 
 // ---- parse batch-state.tsv ----
 // columns: id  url  status  started_at  completed_at  report_num  score  error  retries
-const DONE = new Map(); // url -> { reportNum, score }
-for (const line of readFileSync(STATE_FILE, 'utf-8').split(/\r?\n/)) {
+const DONE = new Map(); // url -> { reportNum, score, lifecycle }
+for (const line of (existsSync(STATE_FILE) ? readFileSync(STATE_FILE, 'utf-8').split(/\r?\n/) : [])) {
   if (!line.trim() || line.startsWith('id\t')) continue;
   const c = line.split('\t');
   if (c.length < 7) continue;
@@ -104,7 +108,7 @@ for (const line of readFileSync(STATE_FILE, 'utf-8').split(/\r?\n/)) {
   DONE.set(url.trim(), { reportNum: (reportNum || '').trim(), score: (score || '').trim() });
 }
 
-if (DONE.size === 0) {
+if (DONE.size === 0 && !LIFECYCLE) {
   console.log('No completed batch entries in batch-state.tsv — nothing to reconcile.');
   process.exit(0);
 }
@@ -148,6 +152,16 @@ function resolvePdf(reportFile) {
   const rep = readReportField(reportFile, 'PDF');
   if (!rep) return '❌';
   return /not generated/i.test(rep) ? '❌' : '✅';
+}
+
+let lifecycleByUrl = new Map();
+if (LIFECYCLE) {
+  const reports = reportFiles.map(file => ({ file, text: readFileSync(join(REPORTS_DIR, file), 'utf-8') }));
+  const reportsByUrl = parseReportLifecycle(reports);
+  const trackerByReport = existsSync(TRACKER_FILE)
+    ? parseTrackerLifecycle(readFileSync(TRACKER_FILE, 'utf-8'))
+    : new Map();
+  lifecycleByUrl = new Map([...reportsByUrl.keys()].map(url => [url, resolvePipelineLifecycle(url, { reportsByUrl, trackerByReport })]).filter(([, v]) => v));
 }
 
 // ---- parse pipeline.md ----
@@ -207,7 +221,30 @@ for (let i = pendStart + 1; i < pendEnd; i++) {
   const body = lines[i].replace(PENDING_ITEM_RE, '');
   const url = lineUrl(body);
   const done = DONE.get(url);
-  if (!done) continue; // not processed → keep in Pendientes
+  const lifecycle = lifecycleByUrl.get(url);
+  if (!done && !lifecycle) continue; // not processed → keep in Pendientes
+
+  if (lifecycle && !done) {
+    if (procUrls.has(url)) {
+      removeIdx.add(i);
+      moved.push({ url, role: '(already in Procesadas)', dup: true });
+      continue;
+    }
+    const parts = body.split('|').map(s => s.trim());
+    const company = parts[1] || lifecycle.company || '';
+    const role = parts[2] || lifecycle.role || '';
+    const reportFile = lifecycle.reportFile;
+    const reportNum = lifecycle.reportNum;
+    const reportLink = reportNum != null
+      ? normalizeReportLink(`[${reportNum}](reports/${reportFile})`, dirname(PIPELINE_FILE), CAREER_OPS)
+      : '';
+    const prefix = reportLink ? `${reportLink} | ` : '';
+    movedProcLines.push(`- [x] ${prefix}${url} | ${company} | ${role} | ${lifecycle.score} | lifecycle: ${lifecycle.terminal}`);
+    moved.push({ url, company, role, num: reportNum, score: lifecycle.score, lifecycle: lifecycle.terminal });
+    procUrls.add(url);
+    removeIdx.add(i);
+    continue;
+  }
 
   if (procUrls.has(url)) {
     // Already recorded in Procesadas — just drop the stale Pendientes copy.

@@ -402,6 +402,16 @@ How it works:
 
 ## Output Summary
 
+### WebSearch run persistence
+
+Agent-driven Level 3 discovery must record one run row after the bounded query set finishes (or immediately when it is interrupted):
+
+```bash
+node record-discovery-run.mjs --status completed --query-count N --queries-completed N --raw-clues N --new-added N --dupes N --errors N
+```
+
+Use `--status failed` and `--interruption-reason "..."` when the run stops before all configured queries complete. This writes `run_type=websearch` metadata to `data/scan-runs.tsv`; the zero-token scanner's own rows remain distinguishable as `run_type=scanner`.
+
 ```text
 Portal Scan — {YYYY-MM-DD}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━
