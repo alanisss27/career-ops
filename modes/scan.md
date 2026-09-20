@@ -1,5 +1,101 @@
 # Mode: scan — Portal Scanner (Job Discovery)
 
+## Local WebSearch administration (Phase 1)
+
+For a requested **WebSearch-only discovery**, use `discovery-workflow.mjs` instead
+of loading history into the model or manually counting/writing outcomes. This
+path preserves broad exploration and the saved queries; it does not run ATS
+monitoring, evaluations, or applications. General multi-source scans below are
+unchanged. Read the required skill once; after preparation use the compact
+context, not repeated full profile/shared/workflow reads. The current user's
+instructions still take precedence.
+
+```bash
+node discovery-workflow.mjs prepare --run RUN_ID
+node discovery-workflow.mjs filter --run RUN_ID --capture capture.json --summary
+node discovery-workflow.mjs filter --run RUN_ID
+node discovery-workflow.mjs filter --run RUN_ID --outcomes outcomes.json
+node discovery-workflow.mjs finalize --run RUN_ID --dry-run
+node discovery-workflow.mjs finalize --run RUN_ID
+```
+
+All commands support `--root PATH` (otherwise normal data-root resolution).
+Runtime state is under `data/discovery/RUN_ID/`. `prepare` returns only pending
+queries and the context path; the context contains exact enabled queries, saved
+rules, output language, boundaries, version and source hashes. Unknown rule
+sections are retained. A stale context stops execution: start a new run, do not
+silently reinterpret an existing one. No CV/experience evidence is needed for
+this discovery-only path. Use one reasoning session or a compact worker prompt;
+do not fork full conversation/history solely for administration.
+
+Execute each **pending** saved WebSearch query once, then immediately capture
+its response locally. Do not ask the model to transcribe/count full responses.
+`filter` accepts `{ "queries": [{ "index": 1, "query": "EXACT SAVED QUERY",
+"status": "completed", "results": [{ "url": "https://…", "title": "…",
+"text": "full returned text", "kind": "job" }] }] }`.
+Optional result fields: `company`, `location`, `pay`, `date`, `embeddedLeads`;
+use `kind: "directory"` for search/listing pages. Do not label uncertain search
+headings as job titles. An empty successful response is `results: []`; a failed
+query uses `status: "failed"`, `error`, and `results: []`. The saved September 19
+`{status,value:{index,query,entries,result}}[]` capture shape is also supported.
+The CLI never invokes WebSearch. The tool orchestrator must supply structured
+result entries (and save the full response); unsupported capture formats fail
+instead of guessing boundaries.
+
+`filter` checkpoints queries idempotently, removes known URL/ATS-identity
+duplicates, and emits compact clue cards. Read only those cards; expand
+`moreEvidence`/`otherEvidence` from the checkpoint before rejecting on incomplete
+text. Directory pages remain eligible even when previously seen or their page
+titles fail the title filter: inspect embedded leads. Ambiguous company/title,
+pay, location and requirements remain for reasoning. `skipped_error` history is
+suppressed under the existing history policy but never called terminal.
+Official verification remains mandatory; aggregators are never authoritative.
+Use `--summary` while capturing each query to avoid repeatedly displaying all
+remaining cards. Once the query set finishes, call `filter` without a capture
+to emit the combined review queue. Filter responses give pending query indexes;
+the exact strings remain in the prepared context.
+
+Checkpoint decisions with `{ "outcomes": [{ "url": "https://…", "title": "…",
+"company": "…", "queryIndex": 1, "status": "unresolved", "reason": "…" }] }`.
+Supported statuses include `added`, `unresolved`, `skipped_error`,
+`skipped_expired`, `skipped_title`, `skipped_salary`, `skipped_location`,
+`skipped_content`, `history_duplicate`, and `terminal_duplicate` (legacy discovery
+artifact statuses are also accepted). Record blocked verification as unresolved
+to avoid retrying it in the same run. Outcomes are immutable once checkpointed;
+a later investigation uses a new run. Completed ATS aliases reuse the same
+decision. Narrow resolution may produce new official URLs or embedded leads;
+include their original query index and evidence in the outcome.
+Also checkpoint the original clue's disposition when resolution produces a
+different official URL; the finalizer must account for every captured clue.
+
+An `added` outcome also requires `discoveryRulesPassed: true` and a structured
+`verification` object with `official`, `active`, `jd`, `application` all `true`,
+`checkedAt` (ISO timestamp), and `evidenceUrl` matching the official posting URL.
+This is an evidence attestation by the investigator, not proof inferred from an
+Apply button or aggregator snippet. Include `location`, `workArrangement`, and
+published `salary` where available. Existing title/location rules are rechecked;
+the investigator must enforce saved compensation/geography/career-direction
+rules, including ambiguous ranges or arrangements. No rule is relaxed.
+When only a company/title match exists, a genuinely different posting may pass
+after review: supply `identityResolution: { "distinctRequisition": true,
+"reason": "evidence identifying the different requisition" }`. This cannot
+override an exact URL or supported ATS-identity terminal/history match.
+
+`finalize` refuses a completed run with unfinished queries or clue decisions.
+Use `--status failed` only to close an abandoned run; ordinarily leave its
+checkpoint open and resume pending work. Finalization journals stable outcomes,
+appends standard scan-history rows, adds only verified eligible jobs to Pending,
+reconciles lifecycle, and records metadata through the same writer as
+`record-discovery-run.mjs`. It never marks Applied. Retries resume a sealed journal
+without repeating searches, verification, or writes. Do not separately run the
+legacy run recorder for this path.
+
+Offline replay: use an isolated data root copied from the relevant prior state,
+then import the existing raw capture and results artifact. A legacy artifact's
+`persistence.timestamp` adopts its **existing matching run row**; it never creates
+a second row. A missing/mismatched receipt stops finalization. Dry-run makes no
+history/run/pipeline writes. Do not replay user fixtures into production.
+
 Scans configured job portals, filters by title relevance, and adds new offers to the pipeline for subsequent evaluation.
 
 > **Note (v1.6+):** The default scanner (`scan.mjs` / `npm run scan`) is **zero-token** and uses structured sources: local parsers configured per company and public Greenhouse, Ashby, and Lever APIs. The levels with Playwright/WebSearch described below represent the **agent** workflow (executed by the AI agent), not what `scan.mjs` does. If a company does not have a local parser or a Greenhouse/Ashby/Lever API, `scan.mjs` will ignore it; in those cases, the agent must manually complete Level 1 (Playwright) or Level 3 (WebSearch).
