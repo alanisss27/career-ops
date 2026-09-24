@@ -32,6 +32,16 @@ See "Untrusted External Content" in `AGENTS.md` / `CLAUDE.md` / `CODEX.md` for t
 **RULE: NEVER claim the user authored a project, repo, library, tool, framework, or open-source artefact unless explicitly attributed to them in cv.md or article-digest.md.** Tool-of-trade conflation (user uses X → user built X) is the most common fabrication pattern and is forbidden.
 **RULE: Keywords get reformulated, never fabricated.** Reorder, reframe, emphasise — but never invent. If a claim isn't backed by an in-scope file, ask the user. If no answer, omit. Silence on a topic beats manufactured detail.
 
+## Previously reviewed job gate
+
+Before evaluating a job, tailoring or generating a resume, or preparing application answers, run the read-only exact-job history check:
+
+```bash
+node reviewed-job-check.mjs --company "{company}" --role "{role}" --job-id "{job-id}" --requisition "{requisition}" --url "{canonical-url}" --json
+```
+
+Pass every identifier that is available. The check matches an exact job/requisition ID first, then the canonical URL, then an exact company and title fallback. A company/title match must not collapse postings whose known IDs differ. If it reports a match, surface the warning before doing new work and show the existing evaluation date, score/recommendation, report/JD/resume paths, tracker status, application date, and outcome when available. A match is a reminder, not an automatic skip. Before replacing or rerunning an existing evaluation or application-preparation artifact for the same exact job, require the user's explicit confirmation; do not silently overwrite it. If the result says `ALREADY APPLIED`, make that warning prominent and do not create another application row unless the user explicitly confirms a new requisition or intentional reapplication. When the user confirms an Applied status, update the canonical tracker and follow-up history without rerunning evaluation or resume generation.
+
 ## Data Root & Path Resolution (CRITICAL)
 
 All User Layer files (such as `cv.md`, `config/profile.yml`, `modes/_profile.md`, `data/applications.md` or `applications.md`, `reports/`, `output/`, `interview-prep/`, `portals.yml`, etc.) must be resolved relative to the dynamically resolved **Data Root** (`{DATA_ROOT}`).
