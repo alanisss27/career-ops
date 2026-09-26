@@ -29,11 +29,10 @@ Clinical research professional with 6+ years supporting Phase I/II clinical-deve
 - Coordinated assigned technical and data issues with CRO data teams, internal clinical teams, sample-management personnel, and supervisors to support documentation accuracy and issue resolution.
 - Analyzed assay and titer data using Excel and GraphPad Prism, including cut-point analysis, titer determination, precision assessment, and %CV calculations.
 
-## Independent Project
+## INDEPENDENT PROJECTS | [GitHub Portfolio](https://github.com/alanisss27)
 
-### Phase I Clinical Trial REDCap/EDC Simulation - SIM-001 | [Portfolio](https://github.com/alanisss27/clinical-trial-redcap-simulation)
-
-Designed Phase I longitudinal CRFs, visit/event mapping, clinical-sample traceability, and data-quality controls in REDCap.
+- **Clinical Study Operations Simulation:** Integrated Phase I timeline, milestones, dependencies, baseline/forecast variance, delivery health, cross-functional RACI, and governance/escalation workflows.
+- **Phase I Clinical Trial REDCap/EDC Simulation — SIM-001:** Designed Phase I longitudinal CRFs, visit/event mapping, clinical-sample traceability, and data-quality controls in REDCap.
 
 ## Education
 
