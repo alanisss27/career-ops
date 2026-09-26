@@ -13,7 +13,7 @@ Clinical research professional with 6+ years supporting Phase I/II clinical-deve
 
 **Akesoe Biologics** | Winter Springs, FL | May 2026-Present
 
-- Developed a phased plan for an approximately 7-9 phase early-stage stem-cell project by breaking early phases into detailed tasks, assigning responsibilities, identifying dependencies, and tracking progress in ClickUp.
+- Developed a phased plan for an early-stage stem-cell project by breaking early phases into detailed tasks, assigning responsibilities, identifying dependencies, and tracking progress in ClickUp.
 - Prepared weekly project-status reports summarizing completed work, potential impacts, next steps, and pending follow-ups; coordinated cross-functional inputs, resource needs, and issue follow-up.
 - Reviewed 30+ SOP/DCR records and electronic documents, identified documentation and version inconsistencies, and supported documentation and form-completion improvements.
 - Identified a compliance/resource-allocation risk related to a proposed GMP certification approach, researched the issue, and recommended a gap-based assessment that led to an internal mock-audit exercise.
@@ -31,7 +31,7 @@ Clinical research professional with 6+ years supporting Phase I/II clinical-deve
 
 ## INDEPENDENT PROJECTS | [GitHub Portfolio](https://github.com/alanisss27)
 
-- **Clinical Study Operations Simulation:** Integrated Phase I timeline, milestones, dependencies, baseline/forecast variance, delivery health, cross-functional RACI, and governance/escalation workflows.
+- **Clinical Study Operations Simulation:** Developed an integrated Phase I study timeline and milestone tracker covering dependencies, baseline/forecast variance, delivery health, cross-functional RACI, and governance/escalation workflows.
 - **Phase I Clinical Trial REDCap/EDC Simulation — SIM-001:** Designed Phase I longitudinal CRFs, visit/event mapping, clinical-sample traceability, and data-quality controls in REDCap.
 
 ## Education
