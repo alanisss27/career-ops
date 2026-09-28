@@ -1,6 +1,7 @@
 # Alanis Sun
 
-Cocoa, FL | 321-750-7281 | yushuangsun36@gmail.com | US Permanent Resident | Bilingual: English and Mandarin Chinese
+Cocoa, FL | 321-750-7281 | yushuangsun36@gmail.com | [GitHub Portfolio](https://github.com/alanisss27)
+US Permanent Resident | Bilingual: English and Mandarin Chinese
 
 ## Professional Summary
 
@@ -28,9 +29,10 @@ Clinical research professional with 6+ years supporting Phase I/II clinical-deve
 - Coordinated assigned technical and data issues across CRO data teams, internal clinical colleagues, sample-management personnel, and supervisors to support documentation accuracy and issue resolution.
 - Analyzed assay and titer data in Excel and GraphPad Prism, including cut-point analysis, titer determination, precision assessment, and %CV calculations.
 
-## Independent Project
+## Independent Projects
 
 - **Clinical Study Operations Simulation:** Developed a Phase I study timeline and milestone tracker covering dependencies, baseline/forecast variance, delivery health, cross-functional RACI, and governance/escalation workflows.
+- **Clinical Trial REDCap Simulation:** Designed a Phase I EDC simulation with longitudinal CRFs, visit mapping, clinical-sample traceability, data-quality controls, and role-based access concepts.
 
 ## Education
 
