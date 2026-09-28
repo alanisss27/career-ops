@@ -9,6 +9,7 @@
 **CPM Transition Value:** 4.5/5
 **Employer Platform / Internal Mobility Value:** 4.2/5
 **Classification:** Hold
+**Application status:** Applied — user-confirmed prior application; submission date not recorded in Career Ops history
 **Legitimacy:** Proceed with Caution — official listing found, but live Apply availability could not be rechecked
 **Compensation:** $64,200–$173,000 annualized base; level-specific offer unknown
 **Location:** 100% remote, Eastern Time business hours; Florida is compatible with the stated time-zone requirement
@@ -25,6 +26,9 @@ cpm_transition_value: 4.5
 employer_platform_internal_mobility_value: 4.2
 legitimacy_tier: proceed_with_caution
 final_decision: Hold
+application_status: Applied
+application_date: null
+prior_career_ops_application_record: none_found
 hard_stops: []
 soft_gaps:
   - The required 2+ years managing projects is only partially supported; the record shows assay-validation execution and recent project planning, not two years of documented project ownership.
@@ -105,3 +109,7 @@ The official IQVIA listing identifies R1557193 and the exact combined title. Its
 ## Job Description (official-source summary)
 
 IQVIA describes a 100% remote laboratory project-services role aligned to Eastern Time, hiring at Associate Manager or Manager level according to experience. Duties span clinical-trial laboratory projects from award through closeout; setup and protocol/budget review; sponsor communications; timeline, deliverable, risk and budget monitoring; change management; laboratory instructions/specifications; and cross-functional issue resolution. The stated gates are 3+ years in a regulated lab and 2+ years managing projects, with a formal PM title expressly unnecessary. LTMS experience is listed. The official range is $64,200–$173,000 annualized base. The official indexed page showed Apply Now, but direct retrieval returned 403 and current availability remains unconfirmed.
+
+## Application History Reconciliation
+
+The existing Career Ops tracker and scoped application records contain no earlier R1557193 application entry; #062 is the only matching record. The user confirmed a prior application after opening the current application flow. Tracker status is now Applied. No application submission date was found, so the tracker date remains 2026-09-28 as the #062 evaluation date and is not represented as the application date. No second application record was created. No follow-up date was scheduled because the application date is unknown. The existing fit scores, Hold evaluation recommendation, and level assessment remain unchanged.
