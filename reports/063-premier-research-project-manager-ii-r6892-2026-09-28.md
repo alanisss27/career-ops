@@ -2,11 +2,11 @@
 
 **Date:** 2026-09-28
 **Official requisition:** R6892 (title and JD supplied directly by the user)
-**Career Ops disposition:** Maybe — reasonable CPM-transition stretch; confirm live status, Florida eligibility, and compensation before application
+**Career Ops disposition:** Maybe — reasonable CPM-transition stretch; user confirmed the official application flow is accessible and can be started
 **Direct Fit:** 3.3/5
 **CPM Transition Value:** 4.3/5
 **Overall:** 3.7/5
-**Official posting / applyability:** Not independently verified; no web retrieval performed at the user's direction
+**Official posting / applyability:** User manually confirmed on 2026-09-28 that the official application flow is accessible and can be started
 **Location:** United States role; remote arrangement and Florida eligibility remain unverified
 **Compensation:** Unknown; compare with $100,000–$120,000 target and $75,000 remote minimum once disclosed
 
@@ -22,7 +22,7 @@ The supplied JD does not state a required prior Clinical Project Manager title, 
 
 **CPM Transition Value — 4.3/5.** The role's clinical-trial delivery, milestone, project-plan, stakeholder, and cross-functional coordination scope aligns strongly with the candidate's Associate CPM/clinical-project coordination direction. The 3+ years relevant-experience preference is plausibly met by the documented clinical-development support background; it is a preference, not a stated hard gate. A stretch application is defensible because the JD does not require prior CPM/CTM title or specified years of PM experience.
 
-**Overall — 3.7/5.** Decent but not ideal under the normal score bands. It is worth considering for the specific CPM-transition value, subject to confirming that the role is still accepting applications, permits a Florida-based remote employee, and meets the candidate's compensation floor.
+**Overall — 3.7/5.** Decent but not ideal under the normal score bands. It is worth considering for the specific CPM-transition value. The user has confirmed the application flow is accessible, so resume/application preparation may proceed. Florida eligibility and compensation remain unverified; compensation is unknown.
 
 ### Supported strengths
 
@@ -46,12 +46,11 @@ The role's duties describe a more senior level of delivery than the candidate ha
 
 ## Practical recommendation
 
-**Maybe / reasonable strategic stretch.** If official application availability, Florida eligibility, and compensation are confirmed, the candidate can reasonably apply while presenting this as a transition into clinical project management. Lead with regulated Phase I/II clinical-development support, CRO/internal coordination, discrepancy resolution, and concrete planning/status-tracking evidence. Do not claim trial leadership, budget management, vendor ownership, formal risk-management ownership, or end-to-end study ownership.
+**Maybe / reasonable strategic stretch.** Proceed with resume preparation based on the user's confirmation that the official application flow is accessible and can be started. Before submitting, confirm Florida eligibility and compensation, which remains unknown. Present this as a transition into clinical project management, supported by regulated Phase I/II clinical-development work, CRO/internal coordination, discrepancy resolution, and concrete planning/status-tracking evidence. Do not claim trial leadership, budget management, vendor ownership, formal risk-management ownership, or end-to-end study ownership.
 
 ## Unverified before application
 
-- Whether R6892 is currently live and accepting applications.
-- Whether the role is remote and eligible for a Florida-based employee.
+- Whether the role's location/work arrangement permits a Florida-based employee.
 - Compensation.
 
 ## Job Description (user-provided summary)
@@ -70,8 +69,8 @@ direct_fit: 3.3/5
 cpm_transition_value: 4.3/5
 overall: 3.7/5
 disposition: Maybe
-recommendation: reasonable strategic stretch, conditional on verifying live status, Florida eligibility, and compensation
-applyability: unverified
+recommendation: reasonable strategic stretch; proceed to resume preparation; confirm Florida eligibility and compensation before submission
+applyability: user-manually-confirmed accessible and startable on 2026-09-28
 remote_status: unverified
 florida_eligibility: unverified
 compensation: unknown
