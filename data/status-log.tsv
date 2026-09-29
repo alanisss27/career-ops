@@ -43,3 +43,4 @@
 65	2026-09-29	Evaluated	Discarded	set-status
 66	2026-09-29	Hold	Evaluated	set-status	JD and Apply link user-confirmed
 70	2026-09-29	Hold	Discarded	set-status	Exact JD supplied by user; evaluation completed
+66	2026-09-29	Evaluated	Applied	set-status	
