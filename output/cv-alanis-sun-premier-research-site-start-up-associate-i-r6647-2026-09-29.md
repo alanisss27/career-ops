@@ -1,11 +1,11 @@
 # Alanis Sun
 
-Cocoa, FL | 321-750-7281 | yushuangsun36@gmail.com | [GitHub Portfolio](https://github.com/alanisss27)  
+Cocoa, FL | 321-750-7281 | yushuangsun36@gmail.com  
 US Permanent Resident | Bilingual: English and Mandarin Chinese
 
 ## Professional Summary
 
-Clinical-development professional with 6+ years supporting Phase I/II clinical trials in a GLP biotech environment, bringing clinical-sample traceability, source-document verification, quality-focused documentation, CRO coordination, and discrepancy resolution. Adds project planning, dependency and timeline tracking, status reporting, and cross-functional follow-through from laboratory operations while transitioning into formal clinical study start-up support.
+Clinical-development professional with 6+ years supporting Phase I/II clinical trials in a GLP biotech environment, bringing clinical-sample traceability, source-document verification, quality-focused documentation, CRO coordination, and discrepancy resolution. Adds project planning, dependency and timeline tracking, status reporting, and cross-functional follow-through from laboratory operations while seeking to transition into formal clinical study start-up operations.
 
 ## Professional Experience
 
@@ -29,7 +29,10 @@ Clinical-development professional with 6+ years supporting Phase I/II clinical t
 
 ## Independent Projects
 
-- **Clinical Study Operations Simulation (independent):** Built a simulated Phase I timeline and milestone tracker covering dependencies, status/forecast variance, delivery health, and issue escalation/governance workflows.
+Portfolio: [GitHub](https://github.com/alanisss27)
+
+- **Clinical Study Operations Simulation (Independent):** Planned a simulated Phase I study timeline and milestone tracker, mapping dependencies, status/forecast variance, and issue escalation workflows.
+- **Clinical Trial REDCap Simulation (Independent):** Designed a mock Phase I EDC with longitudinal CRFs and visit/event mapping, including clinical-sample traceability and data-quality controls.
 
 ## Education
 
