@@ -5,7 +5,7 @@ US Permanent Resident | Bilingual: English and Mandarin Chinese
 
 ## Professional Summary
 
-Clinical-development professional with more than six years supporting Phase I/II research in a GLP biotech environment, combining clinical-sample traceability, regulated documentation, CRO/internal coordination, and discrepancy resolution with project planning, status tracking, and cross-functional follow-through. Experienced in ASCVD clinical-development support and academic oncology research, and seeking to transition into formal clinical project/study operations.
+Clinical-development professional with more than six years supporting Phase I/II research in a GLP biotech environment, combining clinical-sample traceability, regulated documentation, CRO/internal coordination, and discrepancy resolution with project planning, status tracking, and cross-functional follow-through. Experienced in ASCVD clinical-development support and academic oncology research, with a focus on expanding into clinical project and study operations.
 
 ## Professional Experience
 
@@ -49,7 +49,7 @@ Portfolio: [GitHub](https://github.com/alanisss27)
 
 **Project & Process Coordination:** Task/dependency planning, timeline/status tracking, deliverable follow-up, cross-functional coordination, risk identification, SOP/DCR review, CAPA documentation, process improvement, vendor/equipment evaluation
 
-**Tools & Analysis:** ClickUp, Smartsheet, Asana, Excel, GraphPad Prism, Benchling, SharePoint, Microsoft Teams, REDCap (independent simulation)
+**Tools & Analysis:** ClickUp, Smartsheet, Asana, Excel, GraphPad Prism, Benchling, SharePoint, Microsoft Teams, Notion, REDCap (independent simulation)
 
 **AI & Productivity:** ChatGPT, Codex, AI-assisted research synthesis, documentation, workflow organization
 
