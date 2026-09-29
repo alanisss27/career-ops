@@ -5,7 +5,7 @@ US Permanent Resident | Bilingual: English and Mandarin Chinese
 
 ## Professional Summary
 
-Clinical-development operations professional with 6+ years supporting Phase I/II programs in GLP settings, bringing regulated document/data review, sample traceability, CRO/internal coordination, and discrepancy follow-through. Adds project planning/status tracking, process-gap identification, QA-facing CAPA documentation, and cross-functional process improvement to clinical operations support.
+Clinical-development operations professional with 6+ years supporting Phase I/II programs in GLP settings, bringing regulated document/data review, sample traceability, CRO/internal coordination, and discrepancy follow-through. Adds project planning/status tracking, process-gap identification, QA-facing CAPA documentation, and cross-functional coordination and process improvement in clinical-development operations.
 
 ## Professional Experience
 
@@ -46,7 +46,7 @@ Portfolio: [GitHub](https://github.com/alanisss27)
 
 ## Skills
 
-**Clinical Development & Documentation:** Phase I/II clinical-development support, GLP documentation, SOP/DCR/e-document review, source-document verification, sample traceability, CRO/internal coordination, data discrepancy investigation, ICH-GCP documentation exposure
+**Clinical Development & Documentation:** Phase I/II clinical-development support, GLP documentation, SOP/DCR/e-document review, source-document verification, sample traceability, CRO/internal coordination, data discrepancy investigation
 
 **Project & Quality Process Coordination:** Task/dependency planning, project/status tracking, cross-functional follow-up, process-gap identification, mock-audit reporting, CAPA documentation for QA review, process improvement
 
