@@ -22,9 +22,10 @@ Clinical-development professional with more than six years supporting Phase I/II
 
 **Vaxxinity** | Merritt Island, FL | Oct 2018-Jan 2025
 
-- Supported Phase I/II clinical bioanalytical work in a GLP environment, including assay optimization/validation, QC, testing, data analysis, and CRO results/documentation transfer; also supported ASCVD clinical development.
+- Supported Phase I/II clinical-development programs in a GLP environment through bioanalytical study work, and supported ASCVD clinical development.
 - Worked with more than four thousand clinical samples; supported a Phase I workflow through receipt/source-document verification, CRO/internal ID traceability, Benchling records, exception investigation, and sample-manager coordination.
 - Investigated CRO calculation/data discrepancies and coordinated assigned technical issues with CRO data teams, internal clinical colleagues, sample-management personnel, and supervisors through corrected-output review.
+- Prepared assigned assay-result/data-transfer deliverables and supporting documentation for CRO data teams; reviewed underlying data and records to support discrepancy follow-through with internal clinical colleagues.
 
 ## Independent Projects
 
