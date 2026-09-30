@@ -32,10 +32,11 @@ Clinical-development operations professional with 6+ years supporting Phase I/II
 Portfolio: [GitHub](https://github.com/alanisss27)
 
 - **Clinical Study Operations Simulation:** Planned a simulated Phase I timeline and milestone tracker covering dependencies, status/forecast variance, and issue escalation.
+- **Clinical Trial REDCap Simulation:** Designed a simulated Phase I EDC with longitudinal CRFs and visit mapping, sample traceability, data-quality controls, and role-based access concepts.
 
 ## Education
 
-- **M.S., Biomedical Science, Physiology & Pharmacology** - Chang Gung University | 2017-2018; academic oncology/MDR research (not clinical-trial experience)
+- **M.S., Biomedical Science, Physiology & Pharmacology** - Chang Gung University | 2017-2018; academic oncology research involving multidrug resistance (MDR) and drug screening
 - **B.S., Biomedical Science** - Chang Gung University | 2013-2017
 
 ## Certifications
@@ -50,8 +51,6 @@ Portfolio: [GitHub](https://github.com/alanisss27)
 **Project & Quality Process Coordination:** Task/dependency planning, project/status tracking, cross-functional follow-up, process-gap identification, mock-audit reporting, CAPA documentation for QA review, process improvement
 
 **Tools & Analysis:** ClickUp, Smartsheet, Asana, Excel, GraphPad Prism, Benchling, SharePoint, Microsoft Teams, Notion, REDCap (independent simulation)
-
-**AI & Productivity:** ChatGPT, Codex, AI-assisted research synthesis, documentation, workflow organization
 
 ## Publications
 
