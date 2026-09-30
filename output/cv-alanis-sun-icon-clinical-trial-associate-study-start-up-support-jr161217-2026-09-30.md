@@ -50,7 +50,7 @@ Portfolio: [GitHub](https://github.com/alanisss27)
 
 **Project & Quality Process Coordination:** Task/dependency planning, project/status tracking, cross-functional follow-up, process-gap identification, mock-audit reporting, CAPA documentation for QA review, process improvement
 
-**Tools & Analysis:** ClickUp, Smartsheet, Asana, Excel, GraphPad Prism, Benchling, SharePoint, Microsoft Teams, Notion, REDCap (independent simulation)
+**Tools & Analysis:** ClickUp, Smartsheet, Asana, Excel, GraphPad Prism, Benchling, SharePoint, Microsoft Teams, Notion, REDCap (independent simulation), Codex
 
 ## Publications
 
