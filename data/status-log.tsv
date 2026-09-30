@@ -13,7 +13,7 @@
 29	2026-09-24	Evaluated	Applied	set-status	
 31	2026-09-24	Evaluated	Discarded	set-status	
 21	2026-09-27	Applied	Rejected	set-status	
-29	2026-09-27	Applied	Rejected	set-status
+29	2026-09-27	Applied	Rejected	set-status	
 37	2026-09-27	Evaluated	SKIP	set-status	
 38	2026-09-27	Evaluated	SKIP	set-status	
 39	2026-09-27	Evaluated	SKIP	set-status	
@@ -34,13 +34,14 @@
 54	2026-09-27	Evaluated	SKIP	set-status	
 55	2026-09-27	Evaluated	SKIP	set-status	
 56	2026-09-27	Evaluated	SKIP	set-status	
-57	2026-09-27	Evaluated	SKIP	set-status
-58	2026-09-27	Evaluated	SKIP	set-status
+57	2026-09-27	Evaluated	SKIP	set-status	
+58	2026-09-27	Evaluated	SKIP	set-status	
 59	2026-09-27	Evaluated	SKIP	set-status	
 60	2026-09-27	Evaluated	SKIP	set-status	
 62	2026-09-28	Evaluated	Applied	set-status	
 63	2026-09-28	Evaluated	Applied	set-status	Application submitted 2026-09-28.
-65	2026-09-29	Evaluated	Discarded	set-status
+65	2026-09-29	Evaluated	Discarded	set-status	
 66	2026-09-29	Hold	Evaluated	set-status	JD and Apply link user-confirmed
 70	2026-09-29	Hold	Discarded	set-status	Exact JD supplied by user; evaluation completed
 66	2026-09-29	Evaluated	Applied	set-status	
+73	2026-09-29	Evaluated	Applied	set-status	
